@@ -10,13 +10,38 @@
 
     <div class="card">
         <div class="card-header">
-            {{-- <a href="{{ route('admin.tutors.index') }}" class="btn btn-primary">Volver</a> --}}
+        <a href="" class="btn btn-primary">Volver</a>
         </div>
         <div class="card-body">
-            {{-- <form action="{{ route('admin.tutors.store') }}" method="POST" enctype="multipart/form-data">
+            <form action="" method="POST" enctype="multipart/form-data">
                 @csrf
+                <div class="form-group">
+                    <label for="nombre">Nombre</label>
+                    <input type="text" name="nombre" class="form-control" id="nombre" placeholder="Nombre" value="{{ old('nombre') }}">
+                    @error('nombre')
+                        <span class="text-danger">{{ $message }}</span>
+                    @enderror
 
-            </form> --}}
+
+                </div>
+
+                <div class="form-group">
+                    <label for="apellidoP">Apellido Paterno</label>
+                    <input type="text" name="apellidoP" class="form-control" id="apellidoP" placeholder="Apellido Paterno" value="{{ old('apellidoP') }}">
+                    @error('apellidoP')
+                        <span class="text-danger">{{ $message }}</span>
+                    @enderror
+                </div>
+
+                <div class="form-group">
+                    
+                    
+                </div>
+
+
+
+
+            </form>
   
 
 @stop

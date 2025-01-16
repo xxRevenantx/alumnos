@@ -60,7 +60,6 @@ class TutorFactory extends Factory
             'telefono' => $this->faker->phoneNumber(),
             'celular' => $this->faker->phoneNumber(),
             'email' => $this->faker->email(),
-            'student_id' => Student::all()->random()->id,
             //Student::all()->random()->id // Relación con la tabla de estudiantes (students) 
 
         ];

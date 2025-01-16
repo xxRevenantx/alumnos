@@ -31,17 +31,21 @@ class DatabaseSeeder extends Seeder
             'password' => bcrypt('12345678'),
         ]);
 
+        // SE DEBEN EJECUTAR DE MANERA ORDENADA
     
+        // SE PUEDEN CREAR DIRECTAMENTE DESDE EL FACTORY SIN PASAR POR EL SEDEDER
         Level::factory(3)->create();
         Grade::factory(6)->create();
         Group::factory(6)->create();
         Generation::factory(6)->create();
+        Tutor::factory(50)->create();
     
+        // PRIMERO SE CREA EL FACTORY DE STUDENT, PASA POR EL SEEDER Y POR ULTIMO SE LLAMA AL SEEDER DE STUDENT
         $this->call([
             StudentSeeder::class
         ]);
 
-        Tutor::factory(50)->create();
+
 
     }
 }

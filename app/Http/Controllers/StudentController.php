@@ -8,6 +8,7 @@ use App\Models\Generation;
 use App\Models\Grade;
 use App\Models\Group;
 use App\Models\Level;
+use App\Models\Tutor;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -33,9 +34,10 @@ class StudentController extends Controller
         $grades = Grade::all();
         $groups = Group::all();
         $generations = Generation::all();
+        $tutors = Tutor::all();
 
 
-        return view('admin.students.create', compact('levels', 'grades', 'groups', 'generations'));
+        return view('admin.students.create', compact('levels', 'grades', 'groups', 'generations', 'tutors'));
     }
 
     /**
@@ -49,13 +51,13 @@ class StudentController extends Controller
             'nombre' => 'required',
             'apellidoP' => 'required',
             'apellidoM' => 'required',
-            'edad' => 'required',
-            'sexo' => 'required',
-            'fechaNacimiento' => 'required',
-            'level_id' => 'required',
-            'grade_id' => 'required',
-            'group_id' => 'required',
-            'generation_id' => 'required',
+            'edad' => 'required|min:1|max:50', // Campo obligatorio, con un mínimo de 1 y un máximo de 100
+            'sexo' => 'required|in:H,M', // Campo obligatorio, con valores permitidos H y M            'fechaNacimiento' => 'required',
+            'level_id' => 'required|exists:levels,id',
+            'grade_id' => 'required|exists:grades,id',
+            'group_id' => 'required|exists:groups,id',
+            'generation_id' => 'required|exists:generations,id',
+            'tutor_id' => 'required|exists:tutors,id',
             'file'=> 'image',
             'status' => 'required|in:1'
 
@@ -70,12 +72,15 @@ class StudentController extends Controller
             'apellidoP.required' => 'El campo apellido paterno es obligatorio',
             'apellidoM.required' => 'El campo apellido materno es obligatorio',
             'edad.required' => 'El campo edad es obligatorio',
+            'edad.min' => 'La edad debe ser mayor a 1',
+            'edad.max' => 'La edad debe ser menor a 50',
             'sexo.required' => 'El campo sexo es obligatorio',
             'fechaNacimiento.required' => 'El campo fecha de nacimiento es obligatorio',
             'level_id.required' => 'El campo nivel es obligatorio',
             'grade_id.required' => 'El campo grado es obligatorio',
             'group_id.required' => 'El campo grupo es obligatorio',
             'generation_id.required' => 'El campo generación es obligatorio',
+            'tutor_id.required' => 'El campo tutor es obligatorio',
             'file.required' => 'El campo imagen es obligatorio'
 
 
@@ -96,8 +101,6 @@ class StudentController extends Controller
                 return redirect()->route('admin.students.index')->with('info', 'El estudiante se creó con éxito');
             case 'guardar_editar':
                 return redirect()->route('admin.students.edit', $students)->with('info', 'El estudiante se creó con éxito y ahora puedes editarlo');
-            case 'guardar_agregar_tutor':
-                return redirect()->route('admin.students.tutor', $student)->with('info', 'El estudiante se creó con éxito y ahora puedes agregar un tutor');
             default:
                 return redirect()->route('admin.students.index')->with('info', 'Acción no reconocida');
         }

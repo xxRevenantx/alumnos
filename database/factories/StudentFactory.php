@@ -61,6 +61,7 @@ class StudentFactory extends Factory
             'grade_id' => Grade::all()->random()->id,
             'group_id' => Group::all()->random()->id,
             'generation_id' => Generation::all()->random()->id,
+            'tutor_id' => Tutor::all()->random()->id,
         ];
 
         

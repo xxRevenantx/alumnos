@@ -24,7 +24,6 @@ class Tutor extends Model
         'telefono',
         'celular',
         'email',
-        'student_id',
     ];
 
     public function students()

@@ -26,11 +26,14 @@ return new class extends Migration
             $table->unsignedBigInteger('grade_id');
             $table->unsignedBigInteger('group_id');
             $table->unsignedBigInteger('generation_id');
+            $table->unsignedBigInteger('tutor_id');
 
+            
             $table->foreign('level_id')->references('id')->on('levels');
             $table->foreign('grade_id')->references('id')->on('grades');
             $table->foreign('group_id')->references('id')->on('groups');
             $table->foreign('generation_id')->references('id')->on('generations');
+            $table->foreign('tutor_id')->references('id')->on('tutors');
 
 
 

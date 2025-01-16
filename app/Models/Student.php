@@ -24,6 +24,7 @@ class Student extends Model
         'grade_id',
         'group_id',
         'generation_id',
+        'tutor_id',
     ];
 
     public function level()
