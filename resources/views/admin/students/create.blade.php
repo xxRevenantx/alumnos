@@ -41,23 +41,8 @@
 
 <script src="{{asset('vendor/adminlte/dist/js/select2/select2.full.min.js')}}"></script>
 
-
 <script>
-    // Cambiar la imagen
-
-    document.getElementById("file").addEventListener('change', cambiar);
-
-    function cambiar(event) {
-
-        var file = event.target.files[0];
-        var reader = new FileReader();
-        reader.onload = function(e) {
-            document.getElementById("picture").setAttribute('src', e.target.result);
-        }
-        reader.readAsDataURL(file);
-
-    }
-
+    
 
     // In your Javascript (external .js resource or <script> tag)
         $(document).ready(function() {
@@ -68,6 +53,8 @@
             })
     });
 
-
 </script>
+
+
+
 @stop

@@ -6,7 +6,7 @@
         <div class="card-body">
             <form wire:submit.prevent="save" enctype="multipart/form-data">
                 @csrf
-                <input type="hidden" name="status" value="1" hidden>
+                <input type="hidden" name="status" value="1" wire:model.live.debounce.500ms="status" hidden>
 
                 <div class="row">
                     <div class="col-6">
@@ -120,11 +120,10 @@
 
                         <div class="form-group">
                             <label for="grade_id">Grado</label>
-                            <select name="grade_id" id="grade_id" class="form-control">
+                            <select name="grade_id" id="grade_id" class="form-control"  wire:model.live.debounce.500ms="grade_id">
                                 <option value="">Seleccione un grado</option>
                                 @foreach ($grades as $grade)
-                                    <option value="{{ $grade->id }}"
-                                        {{ old('grade_id') == $grade->id ? 'selected' : '' }}>{{ $grade->name }}
+                                    <option value="{{ $grade->id }}">{{ $grade->name }}
                                     </option>
                                 @endforeach
                             </select>
@@ -135,11 +134,10 @@
 
                         <div class="form-group">
                             <label for="group_id">Grupo</label>
-                            <select name="group_id" id="group_id" class="form-control">
+                            <select name="group_id" id="group_id" class="form-control"  wire:model.live.debounce.500ms="group_id">
                                 <option value="">Seleccione un grupo</option>
                                 @foreach ($groups as $group)
-                                    <option value="{{ $group->id }}"
-                                        {{ old('group_id') == $group->id ? 'selected' : '' }}>{{ $group->name }}
+                                    <option value="{{ $group->id }}">{{ $group->name }}
                                     </option>
                                 @endforeach
                             </select>
@@ -150,11 +148,10 @@
 
                         <div class="form-group">
                             <label for="generacion">Generación</label>
-                            <select name="generation_id" id="generation_id" class="form-control">
+                            <select name="generation_id" id="generation_id" class="form-control"  wire:model.live.debounce.500ms="generation_id">
                                 <option value="">Seleccione una generación</option>
                                 @foreach ($generations as $generation)
-                                    <option value="{{ $generation->id }}"
-                                        {{ old('generation_id') == $generation->id ? 'selected' : '' }}>
+                                    <option value="{{ $generation->id }}">
                                         {{ $generation->name }}</option>
                                 @endforeach
                             </select>
@@ -163,26 +160,36 @@
                             @enderror
                         </div>
 
-                        <div class="form-group">
-                            <label for="tutor_id">Tutor</label>
-                            <select name="tutor_id" id="tutor_id" class="form-control select2bs4"
-                                style="width: 100%;">
-                                <option value="">Seleccione un tutor</option>
-                                @foreach ($tutors as $tutor)
-                                    <option value="{{ $tutor->id }}"
-                                        {{ old('tutor_id') == $tutor->id ? 'selected' : '' }}>{{ $tutor->nombre }}
-                                        {{ $tutor->apellidoP }} {{ $tutor->apellidoM }}</option>
-                                @endforeach
-                            </select>
+                      
+                            <div class="row justify-center d-flex align-items-center">
+                                <div class="col-md-9">
+                                    <div class="form-group">
 
-                            @error('tutor_id')
-                                <span class="text-danger">{{ $message }}</span>
-                            @enderror
+                                    <label for="tutor_id">Tutor</label>
+                                    <select name="tutor_id" id="tutor_id" class="form-control select2bs4"
+                                        style="width: 100%;"  wire:model.live.debounce.500ms="tutor_id">
+                                        <option value="">Seleccione un tutor</option>
+                                        @foreach ($tutors as $tutor)
+                                            <option value="{{ $tutor->id }}">{{ $tutor->nombre }}
+                                                {{ $tutor->apellidoP }} {{ $tutor->apellidoM }} => {{ $tutor->curp }}</option>
+                                        @endforeach
+                                    </select>
+        
+                                    @error('tutor_id')
+                                        <span class="text-danger">{{ $message }}</span>
+                                    @enderror
+        
+                                </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                 <label for=""></label>
+                                    <a href="" class="btn btn-success d-block">Nuevo tutor</a>
+                                </div>
+                                </div>
+                            </div>
 
-                            <button type="button" class="btn btn-success">Agregar nuevo tutor</button>
-
-
-                        </div>
+                     
 
 
 
@@ -191,13 +198,27 @@
                                 style="border: thin solid rgba(0,0,0,0.25); border-radius: 5px; position:relative; margin-top: 30px">
                                 <h6
                                     style="padding: 0 5px ;position:absolute; top: -10px; left: 20px; background:#fff;">
-                                    <b>FOTO</b></h6>
+                                    <b>SUBIR FOTO</b></h6>
 
                                 <div class="row">
                                     <div class="col-md-2 col-lg-2">
                                         <div class="image-wrapper">
-                                            <img id="picture"
+
+                                              <!-- Mensajes de éxito -->
+                                                @if (session()->has('message'))
+                                                <div class="alert alert-success">{{ session('message') }}</div>
+                                                  @endif
+
+                                                <!-- Vista previa -->
+                                                @if ($file)
+                                                <img src="{{ $file->temporaryUrl() }}" alt="Vista previa" style="max-width: 300px;">
+                                                @else
+                                                <img id="picture"
                                                 src=" https://cdn.pixabay.com/photo/2023/12/12/15/36/sea-8445435_960_720.jpg">
+                                                @endif
+
+
+                                          
 
                                         </div>
 
@@ -206,11 +227,11 @@
 
 
                                     <div class="col-md-10 col-lg-10" style="overflow: hidden">
-                                        <h5>SUBIR FOTO</h5>
                                         <div class="form-group">
                                             <label for="file">Imagen del alumno</label>
-                                            <input type="file" accept="image/*" name="file" id="file"
-                                                class="form-control">
+                                            <input type="file" wire:model="file" id="file" class="form-control" accept="image/*">
+                                         
+                                            <div wire:loading wire:target="file" class="alert alert-primary w-100">Uploading...</div>
                                             @error('file')
                                                 <span class="text-danger">{{ $message }}</span>
                                             @enderror
@@ -239,6 +260,8 @@
                                     class="dropdown-item">Guardar y editar</button>
                             </div>
                         </div>
+
+                       
 
 
 
