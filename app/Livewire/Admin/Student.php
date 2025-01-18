@@ -85,8 +85,8 @@ class Student extends Component
             $validatedData = $this->validate();
 
             if ($this->file) {
-                $path = $this->file->store('images/students', 'public'); // Almacena en el directorio `public/images`
-                session()->flash('message', 'Imagen cargada exitosamente: ' . $path);
+                $path = $this->file->store('students', 'public'); // Almacena en el directorio `public/images`
+                // session()->flash('message', 'Imagen cargada exitosamente: ' . $path);
             }
 
 

@@ -31,6 +31,7 @@
 
    @livewire('admin.student')
 
+
 @stop
 
 

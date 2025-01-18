@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\Route;
 // RUTA DEL STUDENT
 Route::resource('students', StudentController::class)->names('students');
 
+Route::resource('tutors', TutorController::class)->names('tutors');
+
 
 // RUTA DEL TUTOR
 Route::get('students/{student}/tutor',

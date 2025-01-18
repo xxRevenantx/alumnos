@@ -8,16 +8,8 @@
 
 @section('content')
 
-    <div class="card">
-        <div class="card-header">
-            <a href="{{ route('admin.tutors.index') }}" class="btn btn-primary">Volver</a>
-        </div>
-        <div class="card-body">
-            <form action="{{ route('admin.tutors.store') }}" method="POST" enctype="multipart/form-data">
-                @csrf
+{{-- @livewire('admin.tutor') --}}
 
-            </form>
-  
 
 @stop
 

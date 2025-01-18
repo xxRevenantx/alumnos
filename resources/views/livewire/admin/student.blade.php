@@ -184,15 +184,16 @@
                                 <div class="col-md-3">
                                     <div class="form-group">
                                  <label for=""></label>
-                                    <a href="" class="btn btn-success d-block">Nuevo tutor</a>
+                                    {{-- <a target="_blank" href="{{ route('admin.tutors.create') }}" class="btn btn-success d-block">Nuevo tutor</a> --}}
+                                     {{-- Example button to open modal --}}
+                                    <x-adminlte-button label="Agrega tutor" data-toggle="modal" data-target="#modalPurple" class="bg-purple d-block"/>
                                 </div>
                                 </div>
+
+
                             </div>
 
                      
-
-
-
                         <div class="mb-3">
                             <div class="form-group p-3"
                                 style="border: thin solid rgba(0,0,0,0.25); border-radius: 5px; position:relative; margin-top: 30px">
@@ -231,7 +232,8 @@
                                             <label for="file">Imagen del alumno</label>
                                             <input type="file" wire:model="file" id="file" class="form-control" accept="image/*">
                                          
-                                            <div wire:loading wire:target="file" class="alert alert-primary w-100">Uploading...</div>
+                                            <div wire:loading wire:target="file" class="alert alert-primary mt-3 w-100">Cargando...</div>
+                                            <span>Tamaño de imagen 2.3cm x 3cm. Máximo 1mb.</span> <br>
                                             @error('file')
                                                 <span class="text-danger">{{ $message }}</span>
                                             @enderror
@@ -271,12 +273,17 @@
                     </div>
 
                 </div>
-
-
-
-
-
             </form>
+
+            
+            
+
+            @livewire('admin.tutor')
+                               
+
+
+
+
 
         </div>
     </div>
