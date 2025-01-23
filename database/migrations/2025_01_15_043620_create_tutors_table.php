@@ -17,17 +17,20 @@ return new class extends Migration
             $table->string('nombre');
             $table->string('apellidoP');
             $table->string('apellidoM');
-            $table->string('calle');
-            $table->string('noext');
-            $table->string('noint');
-            $table->string('colonia');
-            $table->string('cp');
-            $table->string('localidad');
-            $table->string('municipio');
-            $table->string('estado');
-            $table->string('telefono');
-            $table->string('celular');
-            $table->string('email');
+            $table->string('calle')->nullable();
+            $table->string('exterior')->nullable();
+            $table->string('interior')->nullable();
+            $table->string('localidad')->nullable();
+            $table->string('colonia')->nullable();
+            $table->string('cp')->nullable();
+            $table->string('municipio')->nullable();
+            $table->string('estado')->nullable();
+            $table->string('telefono')->nullable();
+            $table->string('celular')->nullable();
+            $table->string('email')->nullable();
+            $table->string('parentesco')->nullable();
+            $table->string('ocupacion')->nullable();
+            
 
             $table->timestamps();
         });

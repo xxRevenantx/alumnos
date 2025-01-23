@@ -50,17 +50,19 @@ class TutorFactory extends Factory
             'apellidoP' => $this->faker->lastName(),
             'apellidoM' => $this->faker->lastName(),
             'calle' => $this->faker->address(),
-            'noext' => $this->faker->numberBetween(000,1000),
-            'noint' => $this->faker->numberBetween(000,1000),
+            'exterior' => $this->faker->numberBetween(000,1000),
+            'interior' => $this->faker->numberBetween(000,1000),
+            'localidad' => $this->faker->city(),
             'colonia' => $this->faker->citySuffix(),
             'cp' => $this->faker->postcode(),
-            'localidad' => $this->faker->city(),
             'municipio' => $this->faker->cityPrefix(),
             'estado' => $this->faker->state(),
             'telefono' => $this->faker->phoneNumber(),
             'celular' => $this->faker->phoneNumber(),
             'email' => $this->faker->email(),
-            //Student::all()->random()->id // Relación con la tabla de estudiantes (students) 
+            'parentesco' => $this->faker->randomElement(['Padre', 'Madre', 'Tutor']),
+            'ocupacion' => $this->faker->randomElement(['Estudiante', 'Empleado', 'Empresario', 'Otro']),
+            //  Student::all()->random()->id // Relación con la tabla de estudiantes (students) 
 
         ];
     }

@@ -14,16 +14,18 @@ class Tutor extends Model
         'apellidoP',
         'apellidoM',
         'calle',
-        'noext',
-        'noint',
+        'exterior',
+        'interior',
+        'localidad',
         'colonia',
         'cp',
-        'localidad',
         'municipio',
         'estado',
         'telefono',
         'celular',
         'email',
+        'parentesco',
+        'ocupacion',
     ];
 
     public function students()

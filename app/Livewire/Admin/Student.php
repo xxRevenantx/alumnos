@@ -6,6 +6,7 @@ use App\Models\Generation;
 use App\Models\Grade;
 use App\Models\Group;
 use App\Models\Level;
+use App\Models\Student as ModelsStudent;
 use App\Models\Tutor;
 use Livewire\Component;
 use Livewire\WithFileUploads;
@@ -82,13 +83,38 @@ class Student extends Component
 
         public function save(){
 
-            $validatedData = $this->validate();
+                        // Validar los datos
+                $this->validate();
 
-            if ($this->file) {
-                $path = $this->file->store('students', 'public'); // Almacena en el directorio `public/images`
-                // session()->flash('message', 'Imagen cargada exitosamente: ' . $path);
-            }
 
+                 // Crear el registro del estudiante
+                    $student = ModelsStudent::create([
+                        'status' => $this->status,
+                        'curp' => $this->curp,
+                        'matricula' => $this->matricula,
+                        'nombre' => $this->nombre,
+                        'apellidoP' => $this->apellidoP,
+                        'apellidoM' => $this->apellidoM,
+                        'edad' => $this->edad,
+                        'sexo' => $this->sexo,
+                        'fechaNacimiento' => $this->fechaNacimiento,
+                        'level_id' => $this->level_id,
+                        'grade_id' => $this->grade_id,
+                        'group_id' => $this->group_id,
+                        'generation_id' => $this->generation_id,
+                        'tutor_id' => $this->tutor_id,
+                    ]);
+
+                if ($this->file) {
+                    $url = $this->file->store('students', 'public');
+                    $student->image()->create([
+                        'url' => $url,
+                    ]);
+                }
+
+
+                // Mostrar un mensaje de éxito
+               return redirect()->route('admin.students.index')->with('success', '¡Estudiante registrado con éxito!');
 
     
         }

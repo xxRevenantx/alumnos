@@ -19,6 +19,7 @@
                 <div class="alert alert-success">{{ session('info') }}</div>
             @endif
 
+
             <a href="{{ route('admin.students.create') }}" class="btn btn-primary">Crear Estudiante</a>
         </div>
         <div class="card-body">

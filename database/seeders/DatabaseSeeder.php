@@ -5,7 +5,6 @@ namespace Database\Seeders;
 use App\Models\Generation;
 use App\Models\Grade;
 use App\Models\Group;
-use App\Models\Level;
 use App\Models\Tutor;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -32,16 +31,16 @@ class DatabaseSeeder extends Seeder
         ]);
 
         // SE DEBEN EJECUTAR DE MANERA ORDENADA
-    
+
         // SE PUEDEN CREAR DIRECTAMENTE DESDE EL FACTORY SIN PASAR POR EL SEDEDER
-        Level::factory(3)->create();
-        Grade::factory(6)->create();
-        Group::factory(6)->create();
-        Generation::factory(6)->create();
         Tutor::factory(50)->create();
     
         // PRIMERO SE CREA EL FACTORY DE STUDENT, PASA POR EL SEEDER Y POR ULTIMO SE LLAMA AL SEEDER DE STUDENT
         $this->call([
+            LevelSeeder::class,
+            GradeSeeder::class,
+            GroupSeeder::class,
+            GenerationSeeder::class,
             StudentSeeder::class
         ]);
 

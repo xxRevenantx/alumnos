@@ -13,7 +13,7 @@ class TutorController extends Controller
      */
     public function index()
     {
-        //
+        return view('admin.tutor.index');
     }
 
     /**
@@ -21,7 +21,7 @@ class TutorController extends Controller
      */
     public function create(Student $student)
     {
-        return view('admin.tutors.create', compact('student'));
+        return view('admin.tutor.create', compact('student'));
     }
 
     /**
@@ -45,7 +45,7 @@ class TutorController extends Controller
      */
     public function edit(Tutor $tutor)
     {
-        return view('admin.tutors.edit', compact('tutor'));
+        return view('admin.tutor.edit', compact('tutor'));
     }
 
     /**
@@ -53,7 +53,32 @@ class TutorController extends Controller
      */
     public function update(Request $request, Tutor $tutor)
     {
-        //
+       $data  = $request->validate([
+            'curp' => 'required|size:18|unique:tutors,curp,'.$tutor->id,
+            'nombre' => 'required',
+            'apellidoP' => 'required',
+            'apellidoM' => 'required',
+            'calle' => 'nullable',
+            'exterior' => 'nullable',
+            'interior' => 'nullable',
+            'localidad' => 'nullable',
+            'colonia' => 'nullable',
+            'cp' => 'nullable',
+            'municipio' => 'nullable',
+            'estado' => 'nullable',
+            'telefono' => 'nullable',
+            'celular' => 'nullable',
+            'email' => 'nullable',
+            'parentesco' => 'nullable',
+            'ocupacion' => 'nullable',
+            
+        ]);
+
+
+
+        $tutor->update($data);
+
+        return redirect()->route('admin.tutors.edit', $tutor)->with('info', 'El tutor se actualizó con éxito');
     }
 
     /**

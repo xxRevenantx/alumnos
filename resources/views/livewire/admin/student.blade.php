@@ -205,10 +205,7 @@
                                     <div class="col-md-2 col-lg-2">
                                         <div class="image-wrapper">
 
-                                              <!-- Mensajes de éxito -->
-                                                @if (session()->has('message'))
-                                                <div class="alert alert-success">{{ session('message') }}</div>
-                                                  @endif
+                                           
 
                                                 <!-- Vista previa -->
                                                 @if ($file)
@@ -230,7 +227,11 @@
                                     <div class="col-md-10 col-lg-10" style="overflow: hidden">
                                         <div class="form-group">
                                             <label for="file">Imagen del alumno</label>
-                                            <input type="file" wire:model="file" id="file" class="form-control" accept="image/*">
+                                            
+                                            <div class="custom-file">
+                                                <input type="file" wire:model="file" accept="image/*" name="file"  class="custom-file-input" id="customFileLang" lang="es">
+                                                <label class="custom-file-label" for="customFileLang">Seleccionar Archivo</label>
+                                            </div>
                                          
                                             <div wire:loading wire:target="file" class="alert alert-primary mt-3 w-100">Cargando...</div>
                                             <span>Tamaño de imagen 2.3cm x 3cm. Máximo 1mb.</span> <br>
