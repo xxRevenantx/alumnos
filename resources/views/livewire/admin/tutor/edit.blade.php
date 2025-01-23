@@ -1,3 +1,0 @@
-<div>
-Editar tutor 
-</div>

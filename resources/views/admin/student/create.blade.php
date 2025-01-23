@@ -2,9 +2,6 @@
 
 @section('title', 'Dashboard')
 
-@section('content_header')
-    <h1>Nuevo estudiante</h1>
-@stop
 
 @section('css')
 
@@ -29,7 +26,26 @@
 
 @section('content')
 
-   @livewire('admin.student')
+
+
+<div class="card card-info mt-4">
+
+        <div class="card-header">
+            <h3 class="card-title">
+              <i class="fas fa-user"></i>
+              INSCRIBIR ESTUDIANTE
+            </h3>
+          </div>
+          <div class="card-body">
+        @livewire('admin.student.student')
+
+
+          </div>
+
+</div>
+
+
+
 
 
 @stop
@@ -43,7 +59,7 @@
 <script src="{{asset('vendor/adminlte/dist/js/select2/select2.full.min.js')}}"></script>
 
 <script>
-   
+
     document.querySelector('input[type="file"]').addEventListener('change', function(e) {
         const file = e.target.files[0];
         if (file) {
@@ -70,7 +86,7 @@
 
 
 <script>
-    
+
 
     // In your Javascript (external .js resource or <script> tag)
         $(document).ready(function() {

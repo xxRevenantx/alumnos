@@ -19,9 +19,13 @@
 
 
 
+
+
 @stop
 
 @section('js')
+
+
 @include('admin.partials.tablejs')
 
 <script>
@@ -39,7 +43,7 @@ new DataTable('#tutors', {
                 extend: 'excel',
                 text: 'Exportar Excel',
                 autoFilter: true,
-                sheetName: 'Estudiantes'
+                sheetName: 'Tutores'
 
             }, {
                 extend: 'print',
@@ -55,20 +59,23 @@ new DataTable('#tutors', {
     responsive: true,
     autoWidth: false,
     "language": {
-                    "lengthMenu": "Mostrar _MENU_ estudiantes por página",
-                    "zeroRecords": "No se encuentran estudiantes",
+                    "lengthMenu": "Mostrar _MENU_ tutores por página",
+                    "zeroRecords": "No se encuentran tutores",
                     // "info": "Página _PAGE_ de _PAGES_",
-                    "info":" _TOTAL_ estudiantes totales",
-                    "infoEmpty": "No hay estudiantes",
-                    "search":         "Buscar Estudiante:",
-                    
-                    "infoFiltered": "(filtrado de un total de _MAX_ estudiantes )",
+                    "info":" _TOTAL_ tutores totales",
+                    "infoEmpty": "No hay tutores",
+                    "search":         "Buscar Tutor:",
+
+                    "infoFiltered": "(filtrado de un total de _MAX_ tutores )",
                     'paginate': {
                         'next': 'Siguiente',
                         'previous': 'Anterior'
                     }
                 },
-                
+
 });
 </script>
+
+
+
 @endsection

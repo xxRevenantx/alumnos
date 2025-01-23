@@ -20,8 +20,7 @@ class StudentController extends Controller
     public function index()
     {
         $students = Student::orderBy('id', 'DESC')->where('status', 1)->get();
-
-        return view('admin.students.index', compact('students'));
+        return view('admin.student.index', compact('students'));
 
     }
 
@@ -30,14 +29,7 @@ class StudentController extends Controller
      */
     public function create()
     {
-        $levels = Level::all();
-        $grades = Grade::all();
-        $groups = Group::all();
-        $generations = Generation::all();
-        $tutors = Tutor::all();
-
-
-        return view('admin.students.create', compact('levels', 'grades', 'groups', 'generations', 'tutors'));
+        return view('admin.student.create');
     }
 
     /**
@@ -94,7 +86,7 @@ class StudentController extends Controller
             $students->image()->create([
                 'url' => $url
             ]);
-        }   
+        }
         // Redirección según la acción seleccionada
         switch ($request->action) {
             case 'guardar':
@@ -123,7 +115,7 @@ class StudentController extends Controller
         $grades = Grade::all();
         $groups = Group::all();
         $generations = Generation::all();
-        return view('admin.students.edit', compact('student', 'levels', 'grades', 'groups', 'generations'));
+        return view('admin.student.edit', compact('student', 'levels', 'grades', 'groups', 'generations'));
     }
 
     /**
@@ -198,10 +190,6 @@ class StudentController extends Controller
     }
 
 
-    public function tutor(Student $student)
-    {
-        return view('admin.students.tutor', compact('student'));
-    }
 
-  
+
 }

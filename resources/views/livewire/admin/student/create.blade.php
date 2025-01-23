@@ -1,18 +1,18 @@
 <div>
-    <div class="card">
-        <div class="card-header">
-            <a href="{{ route('admin.students.index') }}" class="btn btn-primary">Volver</a>
-        </div>
+
+    <div class="callout callout-info">
         <div class="card-body">
             <form wire:submit.prevent="save" enctype="multipart/form-data">
                 @csrf
                 <input type="hidden" name="status" value="1" wire:model.live.debounce.500ms="status" hidden>
 
+
+
                 <div class="row">
                     <div class="col-6">
                         <div class="form-group">
                             <label for="curp">CURP</label>
-                            <input type="text" name="curp" class="form-control" wire:model.live.debounce.500ms="curp" 
+                            <input type="text" name="curp" class="form-control" wire:model.live.debounce.500ms="curp"
                                 placeholder="CURP">
                                 @error('curp')
                                 <span class="text-danger">{{ $message }}</span>
@@ -78,26 +78,26 @@
 
                         <div class="form-group">
                             <label for="sexo">Sexo</label>
-                    
+
                             <div class="form-check">
                                 <input class="form-check-input" type="radio" name="sexo" id="sexoM" value="H" wire:model.live.debounce.500ms="sexo">
                                 <label class="form-check-label" for="sexoM">
                                     HOMBRE
                                 </label>
                             </div>
-                    
+
                             <div class="form-check">
                                 <input class="form-check-input" type="radio" name="sexo" id="sexoF" value="M" wire:model.live.debounce.500ms="sexo">
                                 <label class="form-check-label" for="sexoF">
                                     MUJER
                                 </label>
                             </div>
-                    
+
                             @error('sexo')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </div>
-                    
+
 
 
 
@@ -160,40 +160,39 @@
                             @enderror
                         </div>
 
-                      
+
                             <div class="row justify-center d-flex align-items-center">
                                 <div class="col-md-9">
                                     <div class="form-group">
 
                                     <label for="tutor_id">Tutor</label>
                                     <select name="tutor_id" id="tutor_id" class="form-control select2bs4"
-                                        style="width: 100%;"  wire:model.live.debounce.500ms="tutor_id">
+                                        style="width: 100%;"  wire:model="tutor_id">
                                         <option value="">Seleccione un tutor</option>
+                                        <option value="">No asignar por ahora</option>
                                         @foreach ($tutors as $tutor)
                                             <option value="{{ $tutor->id }}">{{ $tutor->nombre }}
                                                 {{ $tutor->apellidoP }} {{ $tutor->apellidoM }} => {{ $tutor->curp }}</option>
                                         @endforeach
                                     </select>
-        
+
                                     @error('tutor_id')
                                         <span class="text-danger">{{ $message }}</span>
                                     @enderror
-        
+
                                 </div>
                                 </div>
                                 <div class="col-md-3">
                                     <div class="form-group">
-                                 <label for=""></label>
-                                    {{-- <a target="_blank" href="{{ route('admin.tutors.create') }}" class="btn btn-success d-block">Nuevo tutor</a> --}}
-                                     {{-- Example button to open modal --}}
-                                    <x-adminlte-button label="Agrega tutor" data-toggle="modal" data-target="#modalPurple" class="bg-purple d-block"/>
+                                    <label for=""></label>
+                                    <a target="_blank" href="{{ route('admin.tutors.index') }}" class="btn btn-primary btn-block">Nuevo Tutor</a>
                                 </div>
                                 </div>
 
 
                             </div>
 
-                     
+
                         <div class="mb-3">
                             <div class="form-group p-3"
                                 style="border: thin solid rgba(0,0,0,0.25); border-radius: 5px; position:relative; margin-top: 30px">
@@ -205,7 +204,7 @@
                                     <div class="col-md-2 col-lg-2">
                                         <div class="image-wrapper">
 
-                                           
+
 
                                                 <!-- Vista previa -->
                                                 @if ($file)
@@ -216,7 +215,7 @@
                                                 @endif
 
 
-                                          
+
 
                                         </div>
 
@@ -227,12 +226,12 @@
                                     <div class="col-md-10 col-lg-10" style="overflow: hidden">
                                         <div class="form-group">
                                             <label for="file">Imagen del alumno</label>
-                                            
+
                                             <div class="custom-file">
                                                 <input type="file" wire:model="file" accept="image/*" name="file"  class="custom-file-input" id="customFileLang" lang="es">
                                                 <label class="custom-file-label" for="customFileLang">Seleccionar Archivo</label>
                                             </div>
-                                         
+
                                             <div wire:loading wire:target="file" class="alert alert-primary mt-3 w-100">Cargando...</div>
                                             <span>Tamaño de imagen 2.3cm x 3cm. Máximo 1mb.</span> <br>
                                             @error('file')
@@ -264,7 +263,7 @@
                             </div>
                         </div>
 
-                       
+
 
 
 
@@ -275,15 +274,6 @@
 
                 </div>
             </form>
-
-            
-            
-
-            @livewire('admin.tutor')
-                               
-
-
-
 
 
         </div>

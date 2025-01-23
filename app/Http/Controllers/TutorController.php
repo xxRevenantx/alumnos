@@ -21,7 +21,7 @@ class TutorController extends Controller
      */
     public function create(Student $student)
     {
-        return view('admin.tutor.create', compact('student'));
+        // return view('admin.tutor.create', compact('student'));
     }
 
     /**
@@ -29,7 +29,7 @@ class TutorController extends Controller
      */
     public function store(Request $request)
     {
-         
+
     }
 
     /**
@@ -37,7 +37,7 @@ class TutorController extends Controller
      */
     public function show(Tutor $tutor)
     {
-        //
+        return view('admin.tutor.show', compact('tutor'));
     }
 
     /**
@@ -71,7 +71,7 @@ class TutorController extends Controller
             'email' => 'nullable',
             'parentesco' => 'nullable',
             'ocupacion' => 'nullable',
-            
+
         ]);
 
 

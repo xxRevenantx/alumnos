@@ -59,9 +59,7 @@
                             <td>{{ $student->fechaNacimiento }}</td>
                             <td>{{ $student->sexo }}</td>
 
-                            <td> 
-
-                                <a href="{{ route('admin.students.tutor', $student) }}" class="btn btn-success">Tutor</a>
+                            <td>
                                 <a href="{{ route('admin.students.edit', $student) }}" class="btn btn-primary">Editar</a>
                                 <form action="{{ route('admin.students.destroy', $student) }}" method="POST" class="d-inline" id="delete-form-{{ $student->id }}">
                                     @csrf
@@ -75,7 +73,7 @@
             </table>
         </div>
     </div>
-    
+
 @stop
 
 @section('js')
@@ -118,14 +116,14 @@ new DataTable('#students', {
                     "info":" _TOTAL_ estudiantes totales",
                     "infoEmpty": "No hay estudiantes",
                     "search":         "Buscar Estudiante:",
-                    
+
                     "infoFiltered": "(filtrado de un total de _MAX_ estudiantes )",
                     'paginate': {
                         'next': 'Siguiente',
                         'previous': 'Anterior'
                     }
                 },
-                
+
 });
 </script>
 
@@ -148,6 +146,9 @@ new DataTable('#students', {
         });
     }
 </script>
+
+
+
 
 
 

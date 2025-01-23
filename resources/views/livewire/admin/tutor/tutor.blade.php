@@ -1,4 +1,18 @@
-<div>
+<div x-data="{ deleteTutor(id){
+              Swal.fire({
+                title: '¿Estás seguro?',
+                text: 'Esta operación no podrá revertirse',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Sí, eliminar'
+                }).then((result) => {
+                if (result.isConfirmed) {
+                    @this.call('destroyTutor', id)
+                }
+                });
+                } }">
 
     @if (session()->has('message'))
         <div class="alert alert-success" role="alert">
@@ -9,7 +23,7 @@
         <div class="row">
 
             <div class="col-12 col-md-6">
-                <div class="col-12">
+             <div class="form-group">
                     <label for="curp">CURP</label>
                     <input type="text" name="curp" class="form-control" wire:model.live.debounce.500ms="curp"
                         placeholder="curp" wire:model.live.debounce.500ms="curp">
@@ -17,7 +31,7 @@
                         <span class="text-danger">{{ $message }}</span>
                     @enderror
                 </div>
-                <div class="col-12">
+             <div class="form-group">
                     <label for="nombre">Nombre</label>
                     <input type="text" name="nombre" class="form-control" wire:model.live.debounce.500ms="nombre"
                         placeholder="Nombre" wire:model.live.debounce.500ms="nombre">
@@ -25,7 +39,7 @@
                         <span class="text-danger">{{ $message }}</span>
                     @enderror
                 </div>
-                <div class="col-12">
+             <div class="form-group">
                     <label for="apellidoP">Apellido Paterno</label>
                     <input type="text" name="apellidoP" class="form-control"
                         wire:model.live.debounce.500ms="apellidoP" placeholder="Apellido Paterno">
@@ -34,7 +48,7 @@
                     @enderror
                 </div>
 
-                <div class="col-12">
+             <div class="form-group">
                     <label for="apellidoM">Apellido Materno</label>
                     <input type="text" name="apellidoM" class="form-control"
                         wire:model.live.debounce.500ms="apellidoM" placeholder="Apellido Materno">
@@ -42,7 +56,7 @@
                         <span class="text-danger">{{ $message }}</span>
                     @enderror
                 </div>
-                <div class="col-12">
+             <div class="form-group">
                     <label for="calle">Calle</label>
                     <input type="text" name="calle" class="form-control" wire:model.live.debounce.500ms="calle"
                         placeholder="Calle">
@@ -50,7 +64,7 @@
                         <span class="text-danger">{{ $message }}</span>
                     @enderror
                 </div>
-                <div class="col-12">
+             <div class="form-group">
                     <label for="interior">No interior</label>
                     <input type="text" name="interior" class="form-control" wire:model.live.debounce.500ms="interior"
                         placeholder="No. interior">
@@ -58,7 +72,7 @@
                         <span class="text-danger">{{ $message }}</span>
                     @enderror
                 </div>
-                <div class="col-12">
+             <div class="form-group">
                     <label for="localidad">Localidad</label>
                     <input type="text" name="localidad" class="form-control"
                         wire:model.live.debounce.500ms="localidad" placeholder="Localidad"
@@ -67,7 +81,7 @@
                         <span class="text-danger">{{ $message }}</span>
                     @enderror
                 </div>
-                <div class="col-12">
+             <div class="form-group">
                     <label for="colonia">Colonia</label>
                     <input type="text" name="colonia" class="form-control" wire:model.live.debounce.500ms="colonia"
                         placeholder="Colonia">
@@ -75,12 +89,12 @@
                         <span class="text-danger">{{ $message }}</span>
                     @enderror
                 </div>
-    
+
 
             </div>
 
             <div class="col-12 col-md-6">
-                <div class="col-12">
+             <div class="form-group">
                     <label for="cp">Código Póstal</label>
                     <input type="text" name="cp" class="form-control"
                         placeholder="Código postal" wire:model.live.debounce.500ms="cp">
@@ -88,7 +102,7 @@
                         <span class="text-danger">{{ $message }}</span>
                     @enderror
                 </div>
-                <div class="col-12">
+             <div class="form-group">
                     <label for="municipio">Municipio</label>
                     <input type="text" name="municipio" class="form-control"
                         wire:model.live.debounce.500ms="municipio" placeholder="Municipio">
@@ -98,7 +112,7 @@
                 </div>
 
 
-                <div class="col-12">
+             <div class="form-group">
                     <label for="estado">Estado</label>
                     <input type="text" name="estado" class="form-control" wire:model.live.debounce.500ms="estado"
                         placeholder="Estado">
@@ -107,7 +121,7 @@
                     @enderror
                 </div>
 
-                <div class="col-12">
+             <div class="form-group">
                     <label for="telefono">Teléfono</label>
                     <input type="text" name="telefono" class="form-control"
                         wire:model.live.debounce.500ms="telefono" placeholder="Teléfono"
@@ -117,7 +131,7 @@
                     @enderror
                 </div>
 
-                <div class="col-12">
+             <div class="form-group">
                     <label for="celular">Celular</label>
                     <input type="text" name="celular" class="form-control"
                         wire:model.live.debounce.500ms="celular" placeholder="Celular">
@@ -126,15 +140,22 @@
                     @enderror
                 </div>
 
-                <div class="col-12">
-                    <label for="email">Email</label>
-                    <input type="text" name="email" class="form-control"
-                        placeholder="Email" wire:model.live.debounce.500ms="email">
+
+                <label for="email">Email</label>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text" id="basic-addon1">@</span>
+                    </div>
+
+                    <input type="email" class="form-control" placeholder="Email" aria-label="Email" aria-describedby="basic-addon1"    placeholder="Email" wire:model.live.debounce.500ms="email">
                     @error('email')
-                        <span class="text-danger">{{ $message }}</span>
-                    @enderror
-                </div>
-                <div class="col-12">
+                    <span class="text-danger">{{ $message }}</span>
+                @enderror
+                  </div>
+
+
+
+             <div class="form-group">
                     <label for="parentesco">Parentesco</label>
                     <input type="text" name="parentesco" class="form-control"
                         wire:model.live.debounce.500ms="parentesco" placeholder="Parentesco"
@@ -143,7 +164,7 @@
                         <span class="text-danger">{{ $message }}</span>
                     @enderror
                 </div>
-                <div class="col-12">
+             <div class="form-group">
                     <label for="ocupacion">Ocupación</label>
                     <input type="text" name="ocupacion" class="form-control"
                         wire:model.live.debounce.500ms="ocupacion" placeholder="Ocupación"
@@ -154,7 +175,7 @@
                 </div>
 
                 <div class="col-12 my-4">
-                    <button type="submit" class="btn btn-success">Guardar</button>
+                    <button type="submit" class="btn btn-success"><i class="fa fa-save"></i> Guardar</button>
                 </div>
 
             </div>
@@ -188,14 +209,12 @@
                     </td>
 
 
-                    <td> 
-                        <a href="" class="btn btn-success">Ver</a>
-                        <a href="{{ route('admin.tutors.edit', $tutor) }}" class="btn btn-primary">Editar</a>
-                        <form action="" method="POST" class="d-inline">
-                            @csrf
-                            @method('DELETE')
-                            <button class="btn btn-danger" type="button">Eliminar</button>
-                        </form>
+                    <td>
+                        <a href="{{ route('admin.tutors.show', $tutor) }}" class="btn btn-success"><i class="fa fa-eye"></i> Ver</a>
+                        <a href="{{ route('admin.tutors.edit', $tutor) }}" class="btn btn-primary"><i class="fas fa-edit"></i> Editar</a>
+                        <button class="btn btn-danger" x-on:click="deleteTutor({{$tutor->id}})" type="button">
+                            <i class="fa fa-trash"></i> Eliminar
+                        </button>
                     </td>
                 </tr>
             @endforeach

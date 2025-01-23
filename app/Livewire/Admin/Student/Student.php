@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire\Admin;
+namespace App\Livewire\Admin\Student;
 
 use App\Models\Generation;
 use App\Models\Grade;
@@ -8,14 +8,16 @@ use App\Models\Group;
 use App\Models\Level;
 use App\Models\Student as ModelsStudent;
 use App\Models\Tutor;
+use Livewire\Attributes\On;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
 class Student extends Component
-{   
+{
 
     use WithFileUploads;
 
+    public $tutors; // Almacenará la lista de tutores
 
     public $status = 1;
     public $curp;
@@ -48,7 +50,6 @@ class Student extends Component
         'grade_id' => 'required|exists:grades,id',
         'group_id' => 'required|exists:groups,id',
         'generation_id' => 'required|exists:generations,id',
-        'tutor_id' => 'required|exists:tutors,id',
         'file'=>  'image|max:1024', // 1MB Max
 
     ];
@@ -69,7 +70,6 @@ class Student extends Component
         'grade_id.required' =>  'El campo grado es obligatorio',
         'group_id.required' => 'El campo grupo es obligatorio',
         'generation_id.required' => 'El campo generación es obligatorio',
-        'tutor_id.required' => 'El campo tutor es obligatorio',
         'file.required'=> 'El campo foto debe ser una imagen',
 
     ];
@@ -116,8 +116,14 @@ class Student extends Component
                 // Mostrar un mensaje de éxito
                return redirect()->route('admin.students.index')->with('success', '¡Estudiante registrado con éxito!');
 
-    
+
         }
+
+    #[On('tutorRegistered')] // Método que se ejecutará al emitir el evento de tutor registrado desde el componente Tutor en tiempo real al registrar un nuevo tutor en la base de datos
+    public function mount(){ // Método que se ejecutará al montar el componente de Livewire para cargar la lista de tutores al formulario de registro de estudiantes
+        $this->tutors = Tutor::orderBy('id', 'DESC')->get();
+
+    }
 
 
     public function render()
@@ -126,10 +132,10 @@ class Student extends Component
         $grades = Grade::all();
         $groups = Group::all();
         $generations = Generation::all();
-        $tutors = Tutor::all();
 
 
-        return view('livewire.admin.student', compact('levels', 'grades', 'groups', 'generations', 'tutors'));
+
+        return view('livewire.admin.student.create', compact('levels', 'grades', 'groups', 'generations'));
     }
 
 
