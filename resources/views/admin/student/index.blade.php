@@ -1,16 +1,15 @@
-@extends('adminlte::page')
+@extends('layouts.app')
 
-@section('title', 'Alumnos')
 
-@section('content_header')
-    <h1>Estudiantes</h1>
-@stop
+@section('subtitle', 'Estudiantes')
+@section('content_header_title', 'Estudiantes')
+@section('content_header_subtitle', 'Estudiantes')
 
 @section('css')
 @include('admin.partials.tablecss')
 @endsection
 
-@section('content')
+@section('content_body')
 
     <div class="card">
         <div class="card-header">

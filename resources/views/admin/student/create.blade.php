@@ -1,6 +1,9 @@
-@extends('adminlte::page')
+@extends('layouts.app')
 
-@section('title', 'Dashboard')
+
+@section('subtitle', 'Inscribir estudiante')
+@section('content_header_title', 'Estudiantes')
+@section('content_header_subtitle', 'Inscribir estudiante')
 
 
 @section('css')
@@ -24,7 +27,7 @@
     </style>
 @stop
 
-@section('content')
+@section('content_body')
 
 
 
@@ -56,7 +59,6 @@
 @section('js')
 
 
-<script src="{{asset('vendor/adminlte/dist/js/select2/select2.full.min.js')}}"></script>
 
 <script>
 

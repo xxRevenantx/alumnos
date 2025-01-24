@@ -25,7 +25,7 @@
             <div class="col-12 col-md-6">
              <div class="form-group">
                     <label for="curp">CURP</label>
-                    <input type="text" name="curp" class="form-control" wire:model.live.debounce.500ms="curp"
+                    <input type="text" name="curp" class="form-control text-uppercase" wire:model.live.debounce.500ms="curp"
                         placeholder="curp" wire:model.live.debounce.500ms="curp">
                     @error('curp')
                         <span class="text-danger">{{ $message }}</span>
@@ -141,11 +141,9 @@
                 </div>
 
 
+
+                <div class="form-group">
                 <label for="email">Email</label>
-                <div class="input-group">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text" id="basic-addon1">@</span>
-                    </div>
 
                     <input type="email" class="form-control" placeholder="Email" aria-label="Email" aria-describedby="basic-addon1"    placeholder="Email" wire:model.live.debounce.500ms="email">
                     @error('email')
@@ -164,6 +162,8 @@
                         <span class="text-danger">{{ $message }}</span>
                     @enderror
                 </div>
+
+
              <div class="form-group">
                     <label for="ocupacion">Ocupación</label>
                     <input type="text" name="ocupacion" class="form-control"
@@ -188,7 +188,7 @@
     </form>
 
 
-    <table class="table table-striped" id="tutors">
+    {{-- <table class="table table-striped" id="tutors">
         <thead>
             <tr>
                 <th class="text-center">ID</th>
@@ -219,5 +219,5 @@
                 </tr>
             @endforeach
         </tbody>
-    </table>
+    </table> --}}
 </div>

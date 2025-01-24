@@ -1,16 +1,16 @@
-@extends('adminlte::page')
+@extends('layouts.app')
 
-@section('title', 'Tutor')
 
-@section('content_header')
-    <h1>Listado de tutores</h1>
-@stop
+@section('subtitle', 'Tutores')
+@section('content_header_title', 'Tutores')
+@section('content_header_subtitle', 'Listado de tutores')
+
 
 @section('css')
 @include('admin.partials.tablecss')
 @endsection
 
-@section('content')
+@section('content_body')
 <div class="card">
     <div class="card-body">
         @livewire('admin.tutor.tutor')

@@ -29,21 +29,21 @@ class StudentFactory extends Factory
         $state = $this->faker->randomElement([
             'AS', 'BS', 'CS', 'CL', 'DF', 'GT', 'HG', 'JC', 'MC', 'MN', 'MS', 'NT', 'NL', 'OC', 'PL', 'QR', 'SP', 'SL', 'SR', 'TC', 'TS', 'TL', 'YN', 'ZS'
         ]); // Estado de nacimiento
-    
+
         // Extracción de los apellidos y nombre para el CURP
         $apellido1 = strtoupper(substr($lastName1, 0, 2)); // Primeras dos letras del primer apellido
         $apellido2 = strtoupper(substr($lastName2, 0, 1)); // Primera letra del segundo apellido
         $primerNombre = strtoupper(substr($firstName, 0, 1)); // Primera letra del primer nombre
-    
+
         // Fecha de nacimiento en formato AA/MM/DD
         $fechaNacimiento = str_replace("-", "", substr($dob, 2, 8)); // Eliminar guiones
-    
+
         // Generar la homoclave (tres caracteres aleatorios)
-        $homoclave = strtoupper($this->faker->lexify('???')); // Tres letras aleatorias
-    
+        $homoclave = strtoupper($this->faker->lexify('?????')); // 5 letras aleatorias
+
         // Formar el CURP completo (18 caracteres)
         $curp = $apellido1 . $apellido2 . $primerNombre . $fechaNacimiento . $sex . $state . $homoclave;
-    
+
         // Asegurarse que el CURP tenga exactamente 18 caracteres
         $curp = substr($curp, 0, 18);
 
@@ -64,6 +64,6 @@ class StudentFactory extends Factory
             'tutor_id' => Tutor::all()->random()->id,
         ];
 
-        
+
     }
 }

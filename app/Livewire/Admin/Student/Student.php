@@ -81,7 +81,7 @@ class Student extends Component
 
 
 
-        public function save(){
+    public function save(){
 
                         // Validar los datos
                 $this->validate();
@@ -117,23 +117,29 @@ class Student extends Component
                return redirect()->route('admin.students.index')->with('success', '¡Estudiante registrado con éxito!');
 
 
-        }
-
-    #[On('tutorRegistered')] // Método que se ejecutará al emitir el evento de tutor registrado desde el componente Tutor en tiempo real al registrar un nuevo tutor en la base de datos
-    public function mount(){ // Método que se ejecutará al montar el componente de Livewire para cargar la lista de tutores al formulario de registro de estudiantes
-        $this->tutors = Tutor::orderBy('id', 'DESC')->get();
-
     }
 
 
+    #[On('tutor-created')]
+    public function updateStudent($tutor  = null){
+        dd($tutor);
+    }
+
+    #[On('tutor-created')]
+    public function mount(){
+        $this->tutors = Tutor::orderBy('id', 'DESC')->get();
+    }
+
+
+
+
+    #[On('tutor-created')]
     public function render()
     {
         $levels = Level::all();
         $grades = Grade::all();
         $groups = Group::all();
         $generations = Generation::all();
-
-
 
         return view('livewire.admin.student.create', compact('levels', 'grades', 'groups', 'generations'));
     }

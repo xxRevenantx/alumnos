@@ -2,8 +2,9 @@
 
 namespace App\Livewire\Admin\Tutor ;
 
-use App\Models\Student;
+
 use App\Models\Tutor as ModelsTutor;
+use Livewire\Attributes\On;
 use Livewire\Component;
 
 class Tutor extends Component
@@ -56,6 +57,7 @@ class Tutor extends Component
             $this->validateOnly($propertyName);
         }
 
+        #[On('tutor-created')]
         public function mount()
         {
             // Cargar los tutores al montar el componente
@@ -85,31 +87,31 @@ class Tutor extends Component
             'ocupacion' => $this->ocupacion,
         ]);
 
-        $this->reset([
-            'curp',
-            'nombre',
-            'apellidoP',
-            'apellidoM',
-            'calle',
-            'exterior',
-            'interior',
-            'localidad',
-            'colonia',
-            'cp',
-            'municipio',
-            'estado',
-            'telefono',
-            'celular',
-            'email',
-            'parentesco',
-            'ocupacion',
-        ]);
+
 
             $this->getTutors();
+            $this->dispatch('tutor-created' , $tutor);
 
+            $this->reset([
+                'curp',
+                'nombre',
+                'apellidoP',
+                'apellidoM',
+                'calle',
+                'exterior',
+                'interior',
+                'localidad',
+                'colonia',
+                'cp',
+                'municipio',
+                'estado',
+                'telefono',
+                'celular',
+                'email',
+                'parentesco',
+                'ocupacion',
+            ]);
 
-
-            $this->dispatch('tutorRegistered', tutor: $this->tutors);
 
 
 

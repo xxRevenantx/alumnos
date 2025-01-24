@@ -1,7 +1,27 @@
-<div>
+<div  x-on:tutor-created="Holaaaaaaaaa">
 
     <div class="callout callout-info">
-        <div class="card-body">
+
+
+                    {{-- Custom --}}
+            <x-adminlte-modal id="modalCustom" title="Agregar nuevo tutor" size="lg" theme="primary"
+            icon="fas fa-bell" v-centered static-backdrop scrollable>
+
+              @livewire('admin.tutor.tutor')
+
+            <x-slot name="footerSlot">
+                {{-- <x-adminlte-button class="mr-auto" theme="success" label="Agregar"/> --}}
+                <x-adminlte-button theme="danger" label="Cancelar" data-dismiss="modal"/>
+            </x-slot>
+
+            </x-adminlte-modal>
+
+            <div class="d-flex justify-content-end">
+                 <x-adminlte-button label="Nuevo tutor" data-toggle="modal" data-target="#modalCustom" class="bg-primary"/>
+             </div>
+
+         <div class="card-body">
+
             <form wire:submit.prevent="save" enctype="multipart/form-data">
                 @csrf
                 <input type="hidden" name="status" value="1" wire:model.live.debounce.500ms="status" hidden>
@@ -161,8 +181,7 @@
                         </div>
 
 
-                            <div class="row justify-center d-flex align-items-center">
-                                <div class="col-md-9">
+
                                     <div class="form-group">
 
                                     <label for="tutor_id">Tutor</label>
@@ -181,16 +200,8 @@
                                     @enderror
 
                                 </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="form-group">
-                                    <label for=""></label>
-                                    <a target="_blank" href="{{ route('admin.tutors.index') }}" class="btn btn-primary btn-block">Nuevo Tutor</a>
-                                </div>
-                                </div>
 
 
-                            </div>
 
 
                         <div class="mb-3">
@@ -251,17 +262,20 @@
                         </div>
 
                         <div class="btn-group">
-                            <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown"
+                            <button  wire:loading.class="opacity-50" type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown"
                                 aria-haspopup="true" aria-expanded="false">
                                 Acciones
                             </button>
                             <div class="dropdown-menu">
-                                <button type="submit" name="action" value="guardar"
+                                <button  wire:loading.class="opacity-50" type="submit" name="action" value="guardar"
                                     class="dropdown-item">Guardar</button>
-                                <button type="submit" name="action" value="guardar_editar"
+                                <button  wire:loading.class="opacity-50" type="submit" name="action" value="guardar_editar"
                                     class="dropdown-item">Guardar y editar</button>
                             </div>
                         </div>
+
+
+
 
 
 
@@ -274,6 +288,10 @@
 
                 </div>
             </form>
+
+
+
+
 
 
         </div>
