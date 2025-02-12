@@ -1,4 +1,66 @@
-<x-app-layout>
+
+@extends('layouts.app')
+
+
+@section('subtitle', 'Perfil')
+@section('content_header_title', 'Perfil')
+
+
+
+
+@section('content_body')
+
+
+    <section class="content-header">
+
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+
+            <div class="card card-primary card-outline">
+              <div class="card-body box-profile">
+                <div class="row">
+                    <div class="col-md-6">
+                    @if (Laravel\Fortify\Features::canUpdateProfileInformation())
+                    @livewire('profile.update-profile-information-form')
+
+                    <x-section-border />
+                    @endif
+
+                </div>
+
+
+                <div class="col-md-6">
+
+                    @if (Laravel\Fortify\Features::enabled(Laravel\Fortify\Features::updatePasswords()))
+                    <div class="mt-10 sm:mt-0">
+                        @livewire('profile.update-password-form')
+                    </div>
+
+                    <x-section-border />
+                @endif
+
+
+
+            </div>
+            </div>
+          </div>
+
+
+        </div>
+
+      </div>
+    </section>
+
+
+
+
+
+@stop
+
+{{-- <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('Profile') }}
@@ -42,4 +104,4 @@
             @endif
         </div>
     </div>
-</x-app-layout>
+</x-app-layout> --}}

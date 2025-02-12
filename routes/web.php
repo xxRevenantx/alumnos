@@ -3,8 +3,14 @@
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return redirect()->route('login');
+    return view('auth.login');
+    // return redirect('login');
 });
+
+Route::get('/register', function () {
+    return view('auth.login');
+    // return redirect('login');
+})->name('auth.register');
 
 Route::middleware([
     'auth:sanctum',

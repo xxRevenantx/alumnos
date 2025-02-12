@@ -14,7 +14,7 @@ return [
     |
     */
 
-    'title' => 'Alumnos',
+    'title' => 'GestorSys',
     'title_prefix' => '',
     'title_postfix' => '',
 
@@ -38,9 +38,9 @@ return [
     | Google Fonts
     |--------------------------------------------------------------------------
     |
-    | Here you can allow or not the use of external google fonts. Disabling the
-    | google fonts may be useful if your admin panel internet access is
-    | restricted somehow.
+    | Aquí puede permitir o no el uso de fuentes externas de Google. Desactivar
+    | las fuentes de Google puede ser útil si el acceso a internet de su panel
+    | de administración está restringido de alguna manera.
     |
     | For detailed instructions you can look the google fonts section here:
     | https://github.com/jeroennoten/Laravel-AdminLTE/wiki/Basic-Configuration
@@ -63,7 +63,7 @@ return [
     |
     */
 
-    'logo' => '<b>Admin</b>Alumnos',
+    'logo' => '<b>Gestor</b>SYS',
     'logo_img' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
     'logo_img_class' => 'brand-image img-circle elevation-3',
     'logo_img_xl' => null,
@@ -260,10 +260,10 @@ return [
     'dashboard_url' => 'dashboard',
     'logout_url' => 'logout',
     'login_url' => 'login',
-    'register_url' => 'register',
+    // 'register_url' => 'register',
     'password_reset_url' => 'password/reset',
     'password_email_url' => 'password/email',
-    'profile_url' => false,
+    'profile_url' => true,
     'disable_darkmode_routes' => false,
 
     /*
@@ -299,6 +299,25 @@ return [
     */
 
     'menu' => [
+        ['header' => 'Autoridades'],
+
+        [
+            'text' => 'Autoridades',
+            'icon' => 'fas fa-fw fa-share',
+            'submenu' => [
+                [
+                    'text' => 'Supervisores',
+                    'route' => 'admin.supervisores.index',
+                    'active' => ['admin/supervisores*'],
+                ],
+                [
+                    'text' => 'Directores',
+                    'route' => '',
+                    'active' => ['admin/directores*'],
+                ],
+
+            ],
+        ],
 
         ['header' => 'account_settings'],
         [
@@ -333,22 +352,8 @@ return [
 
             ],
         ],
-        ['header' => 'labels'],
-        [
-            'text' => 'important',
-            'icon_color' => 'red',
-            'url' => '#',
-        ],
-        [
-            'text' => 'warning',
-            'icon_color' => 'yellow',
-            'url' => '#',
-        ],
-        [
-            'text' => 'information',
-            'icon_color' => 'cyan',
-            'url' => '#',
-        ],
+
+
     ],
 
     /*
