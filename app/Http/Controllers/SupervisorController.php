@@ -14,6 +14,7 @@ class SupervisorController extends Controller
     public function index()
     {
         $supervisores = Supervisor::all();
+
         return view('admin.supervisores.index', compact('supervisores'));
     }
 
@@ -46,7 +47,7 @@ class SupervisorController extends Controller
      */
     public function edit(Supervisor $supervisor)
     {
-        //
+        return view('admin.supervisores.edit', compact('supervisor'));
     }
 
     /**

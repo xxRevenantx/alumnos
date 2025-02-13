@@ -1,8 +1,8 @@
 <div>
     @if(session()->has('mensaje'))
         <div class="alert alert-success">{{ session('mensaje') }}</div>
-
     @endif
+
     <form wire:submit.prevent="guardarSupervisor">
         <div class="form-group">
             <label for="nombre">Nombre</label>
