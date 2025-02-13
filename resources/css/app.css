@@ -5,3 +5,8 @@
 [x-cloak] {
     display: none;
 }
+
+
+.sidebar-color{
+    background-color: #1C232F !important;
+}

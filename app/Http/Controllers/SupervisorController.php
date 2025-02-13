@@ -3,8 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Supervisor;
-use App\Http\Requests\StoreSupervisorRequest;
-use App\Http\Requests\UpdateSupervisorRequest;
+use Illuminate\Http\Request;
 
 class SupervisorController extends Controller
 {
@@ -29,7 +28,7 @@ class SupervisorController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreSupervisorRequest $request)
+    public function store(Request $request)
     {
         //
     }
@@ -45,15 +44,18 @@ class SupervisorController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Supervisor $supervisor)
+    public function edit($supervisor)
     {
-        return view('admin.supervisores.edit', compact('supervisor'));
+        $supervisor = Supervisor::find($supervisor);
+
+        return view('admin.supervisores.edit',compact('supervisor'));
+        // return $supervisor;
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateSupervisorRequest $request, Supervisor $supervisor)
+    public function update(Request $request, Supervisor $supervisor)
     {
         //
     }

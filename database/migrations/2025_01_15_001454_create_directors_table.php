@@ -13,6 +13,13 @@ return new class extends Migration
     {
         Schema::create('directors', function (Blueprint $table) {
             $table->id();
+            $table->string('nombre');
+            $table->string('apellido_materno');
+            $table->string('apellido_paterno');
+            $table->string('email')->nullable();
+            $table->string('telefono')->nullable();
+
+
             $table->timestamps();
         });
     }

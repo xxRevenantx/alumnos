@@ -1,14 +1,13 @@
 <div>
     <div class="card">
         <div class="card-header">
-
             @if(session()->has('mensaje'))
-            <div class="alert alert-success">{{ session('mensaje') }}</div>
+                <x-adminlte-alert theme="success" title="Ok!" dismissable>
+                  {{  session('mensaje')}}
+                </x-adminlte-alert>
+              @endif
 
-        @endif
-
-
-            <a href="{{ route('admin.supervisores.create') }}" class="btn btn-primary">Nuevo supervisor</a>
+            <a href="{{ route('admin.supervisores.create') }}" class="btn btn-primary"> <i class="fas fa-user"></i> Nuevo Supervisor</a>
         </div>
         <div class="card-body">
             <table class="table table-striped" id="supervisores">
@@ -24,8 +23,8 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($supervisores as $key =>  $supervisor)
-                    <tr>
+                    @foreach ( $supervisores as $key =>  $supervisor)
+                    <tr :key = "{{ $supervisor->id }}">
                         <td>{{ $key+1}}</td>
                         <td>{{ $supervisor->nombre }} {{ $supervisor->apellido_paterno }} {{ $supervisor->apellido_materno }}</td>
                         <td>{{ $supervisor->email }}</td>
@@ -33,11 +32,14 @@
                         <td>{{ $supervisor->zona }}</td>
                         <td>{{ $supervisor->sector }}</td>
                         <td>
-                            <a href="{{ route('admin.supervisores.edit', $supervisor) }}" class="btn btn-primary">Editar</a>
-                            <button onclick="eliminarSupervisor({{ $supervisor->id }})" class="btn btn-danger">Eliminar</button>
+
+                            <a href="{{ route('admin.supervisores.edit',$supervisor) }}" class="btn btn-outline-primary"><i class="fas fa-edit"></i> Editar</a>
+                            <x-adminlte-button onclick="eliminarSupervisor({{ $supervisor->id }})" class="btn-md" type="button" label="Eliminar" theme="outline-danger" icon="fas fa-lg fa-trash"/>
+
+                            {{-- <button onclick="eliminarSupervisor({{ $supervisor->id }})" class="btn btn-danger">Eliminar</button> --}}
                         </td>
                     </tr>
-                    @endforeach
+                   @endforeach
 
 
                 </tbody>
@@ -45,6 +47,8 @@
         </div>
     </div>
 </div>
+
+
 
 @section('js')
 

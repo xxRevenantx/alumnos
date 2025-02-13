@@ -39,19 +39,12 @@
             <input type="text" wire:model.live="sector" class="form-control" id="sector" placeholder="Ingrese su sector">
             @error('sector') <span class="text-danger">{{ $message }}</span> @enderror
         </div>
-        <button type="submit" class="btn btn-primary">
-            Enviar
+        <div>
+
+            <x-adminlte-button class="btn-flat" type="submit" label="Guardar supervisor" theme="primary" icon="fas fa-lg fa-save"/>
             <div wire:loading>
-            <svg wire:load xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" style="width: 30px; height: 40px; margin-left: 10px;">
-            <linearGradient id="a6">
-                <stop offset="0" stop-color="#FFFFFF" stop-opacity="0"></stop>
-                <stop offset="1" stop-color="#FFFFFF"></stop>
-            </linearGradient>
-            <circle fill="none" stroke="url(#a6)" stroke-width="15" stroke-linecap="round" stroke-dasharray="0 44 0 44 0 44 0 44 0 360" cx="100" cy="100" r="70" transform-origin="center">
-                <animateTransform type="rotate" attributeName="transform" calcMode="discrete" dur="2" values="360;324;288;252;216;180;144;108;72;36" repeatCount="indefinite"></animateTransform>
-            </circle>
-            </svg>
+                <svg  style="width: 30px; height: 40px; margin-left: 5px;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><path fill="#0A6EFF" stroke="#0A6EFF" stroke-width="15" transform-origin="center" d="m148 84.7 13.8-8-10-17.3-13.8 8a50 50 0 0 0-27.4-15.9v-16h-20v16A50 50 0 0 0 63 67.4l-13.8-8-10 17.3 13.8 8a50 50 0 0 0 0 31.7l-13.8 8 10 17.3 13.8-8a50 50 0 0 0 27.5 15.9v16h20v-16a50 50 0 0 0 27.4-15.9l13.8 8 10-17.3-13.8-8a50 50 0 0 0 0-31.7Zm-47.5 50.8a35 35 0 1 1 0-70 35 35 0 0 1 0 70Z"><animateTransform type="rotate" attributeName="transform" calcMode="spline" dur="2" values="0;120" keyTimes="0;1" keySplines="0 0 1 1" repeatCount="indefinite"></animateTransform></path></svg>
+            </div>
         </div>
-        </button>
     </form>
 </div>

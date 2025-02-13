@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DirectorController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\SupervisorController;
 use App\Http\Controllers\TutorController;
@@ -7,6 +8,7 @@ use Illuminate\Support\Facades\Route;
 
 // RUTAS SUPERVISOR
 Route::resource('supervisores', SupervisorController::class)->names('supervisores'); // prefijo admin => admin.supervisores.ruta
+Route::resource('directores', DirectorController::class)->names('directores'); // prefijo admin => admin.directores.ruta
 
 
 

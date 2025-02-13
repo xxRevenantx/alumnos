@@ -10,6 +10,10 @@ class Supervisor extends Model
     /** @use HasFactory<\Database\Factories\SupervisorFactory> */
     use HasFactory;
 
+    protected $primaryKey = 'id'; // Por defecto en Laravel
+
+    protected $table = 'supervisors';
+
     protected $fillable = [
         'nombre',
         'apellido_paterno',

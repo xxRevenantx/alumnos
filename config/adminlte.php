@@ -84,7 +84,7 @@ return [
     */
 
     'auth_logo' => [
-        'enabled' => false,
+        'enabled' => true,
         'img' => [
             'path' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
             'alt' => 'Auth Logo',
@@ -196,7 +196,7 @@ return [
     'classes_content_wrapper' => '',
     'classes_content_header' => '',
     'classes_content' => '',
-    'classes_sidebar' => 'sidebar-dark-info bg-navy elevation-4',
+    'classes_sidebar' => 'sidebar-dark-info elevation-4 sidebar-color',
     'classes_sidebar_nav' => '',
     'classes_topnav' => 'navbar-white navbar-light',
     'classes_topnav_nav' => 'navbar-expand',
@@ -299,7 +299,7 @@ return [
     */
 
     'menu' => [
-        ['header' => 'Autoridades'],
+        ['header' => 'AUTORIDADES'],
 
         [
             'text' => 'Autoridades',
@@ -312,7 +312,7 @@ return [
                 ],
                 [
                     'text' => 'Directores',
-                    'route' => '',
+                    'route' => 'admin.directores.index',
                     'active' => ['admin/directores*'],
                 ],
 
@@ -391,26 +391,51 @@ return [
     */
 
     'plugins' => [
-        'Datatables' => [
-            'active' => false,
-            'files' => [
-                [
-                    'type' => 'js',
-                    'asset' => false,
-                    'location' => '//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js',
-                ],
-                [
-                    'type' => 'js',
-                    'asset' => false,
-                    'location' => '//cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js',
-                ],
-                [
-                    'type' => 'css',
-                    'asset' => false,
-                    'location' => '//cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css',
+        'DatatablesPlugins' => [
+                'active' => false,
+                'files' => [
+                    [
+                        'type' => 'js',
+                        'asset' => true,
+                        'location' => 'vendor/datatables-plugins/buttons/js/dataTables.buttons.min.js',
+                    ],
+                    [
+                        'type' => 'js',
+                        'asset' => true,
+                        'location' => 'vendor/datatables-plugins/buttons/js/buttons.bootstrap4.min.js',
+                    ],
+                    [
+                        'type' => 'js',
+                        'asset' => true,
+                        'location' => 'vendor/datatables-plugins/buttons/js/buttons.html5.min.js',
+                    ],
+                    [
+                        'type' => 'js',
+                        'asset' => true,
+                        'location' => 'vendor/datatables-plugins/buttons/js/buttons.print.min.js',
+                    ],
+                    [
+                        'type' => 'js',
+                        'asset' => true,
+                        'location' => 'vendor/datatables-plugins/jszip/jszip.min.js',
+                    ],
+                    [
+                        'type' => 'js',
+                        'asset' => true,
+                        'location' => 'vendor/datatables-plugins/pdfmake/pdfmake.min.js',
+                    ],
+                    [
+                        'type' => 'js',
+                        'asset' => true,
+                        'location' => 'vendor/datatables-plugins/pdfmake/vfs_fonts.js',
+                    ],
+                    [
+                        'type' => 'css',
+                        'asset' => true,
+                        'location' => 'vendor/datatables-plugins/buttons/css/buttons.bootstrap4.min.css',
+                    ],
                 ],
             ],
-        ],
         'Select2' => [
             'active' => false,
             'files' => [

@@ -13,7 +13,7 @@ class DirectorController extends Controller
      */
     public function index()
     {
-        //
+        return view('admin.directores.index');
     }
 
     /**
@@ -21,7 +21,7 @@ class DirectorController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.directores.create');
     }
 
     /**
@@ -43,9 +43,11 @@ class DirectorController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Director $director)
+    public function edit($director_id)
     {
-        //
+        $director = Director::find($director_id);
+
+        return view('admin.directores.edit', compact('director'));
     }
 
     /**

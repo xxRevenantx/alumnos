@@ -9,4 +9,12 @@ class Director extends Model
 {
     /** @use HasFactory<\Database\Factories\DirectorFactory> */
     use HasFactory;
+
+    protected $fillable = [
+        'nombre',
+        'apellido_materno',
+        'apellido_paterno',
+        'email',
+        'telefono',
+    ];
 }
