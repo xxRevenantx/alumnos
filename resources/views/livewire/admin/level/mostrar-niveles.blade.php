@@ -31,8 +31,24 @@
                         <td><img src="{{ asset('storage/levels/'.$nivel->imagen) }}" alt="{{ $nivel->level }}" width="50"></td>
                         <td><span class="badge badge-primary" style="background-color: {{ $nivel->color }}">{{ $nivel->color }}</span></td>
                         <td>{{ $nivel->cct }}</td>
-                        <td><a href="{{route('admin.directores.edit', $nivel->director->id)}}">{{ $nivel->director->nombre }} {{ $nivel->director->apellido_paterno }} {{ $nivel->director->apellido_materno}}   </a> </td>
-                        <td><a href="{{route('admin.supervisores.edit', $nivel->supervisor->id)}}">{{ $nivel->supervisor->nombre }} {{ $nivel->supervisor->apellido_paterno }} {{ $nivel->supervisor->apellido_materno }} </a></td>
+                        <td>
+                            @if($nivel->director)
+                                <a href="{{route('admin.directores.edit', $nivel->director->id)}}">
+                                    {{ $nivel->director->nombre }} {{ $nivel->director->apellido_paterno }} {{ $nivel->director->apellido_materno }}
+                                </a>
+                            @else
+                                Sin Director
+                            @endif
+                        </td>
+                        <td>
+                            @if($nivel->supervisor)
+                                <a href="{{route('admin.supervisores.edit', $nivel->supervisor->id)}}">
+                                    {{ $nivel->supervisor->nombre }} {{ $nivel->supervisor->apellido_paterno }} {{ $nivel->supervisor->apellido_materno }}
+                                </a>
+                            @else
+                                Sin Supervisor
+                            @endif
+                        </td>
 
                         <td>
 

@@ -4,7 +4,7 @@
     @endif
 
     <form wire:submit.prevent="guardarNivel" enctype="multipart/form-data">
-        
+
         <div class="d-flex align-items-start mr-4 align-items-sm-center gap-5">
 
 
@@ -14,7 +14,7 @@
             </div> --}}
             @if ($imagen)
             <div class="form-group mr-4">
-                <img src="{{ $imagen->temporaryUrl()}}" class="d-block rounded" id="imagePreview"  width="100">
+                <img src="{{ $imagen->temporaryUrl()}}" class="d-block rounded" id="imagePreview"  width="300px">
             </div>
             @else
             <div wire:loading wire:target="imagen" class="mr-4" >
@@ -25,13 +25,13 @@
                 <img src="https://teesequin.com/cdn/shop/products/zhaopian_800x.png?v=1595470674" class="d-block rounded" id="imagePreview"  width="100">
             </div>
              @endif
-         
-          
+
+
             <div class="button-wrapper">
               <label for="upload" class="btn btn-primary me-2 mb-4" tabindex="0">
                 <span class="d-none d-sm-block">Subir Imagen</span>
                 <i class="bx bx-upload d-block d-sm-none"></i>
-                <input type="file"  wire:model="imagen" class="account-file-input nuevaImagenNivel" id="upload" name="nuevaImagenNivel" 
+                <input type="file"  wire:model="imagen" class="account-file-input nuevaImagenNivel" id="upload" name="nuevaImagenNivel"
                 accept="image/png, image/jpeg" hidden="hidden"></label>
               <p class="fs-6 mb-0">Formatos permitidos JPG o PNG (800 x 800). Tamaño máximo 1mb</p>
             </div>
@@ -40,7 +40,7 @@
                     @error('imagen') <span class="text-danger">{{ $message }}</span> @enderror
 
    <hr>
-     
+
         <div class="row">
             <div class="col-md-6">
                 <div class="form-group">
