@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\DirectorController;
+use App\Http\Controllers\LevelController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\SupervisorController;
 use App\Http\Controllers\TutorController;
@@ -8,8 +9,12 @@ use Illuminate\Support\Facades\Route;
 
 // RUTAS SUPERVISOR
 Route::resource('supervisores', SupervisorController::class)->names('supervisores'); // prefijo admin => admin.supervisores.ruta
+
+// RUTAS DIRECTOR
 Route::resource('directores', DirectorController::class)->names('directores'); // prefijo admin => admin.directores.ruta
 
+// RUTAS DEL NIVEL
+Route::resource('niveles', LevelController::class)->names('levels'); // prefijo admin => admin.niveles.ruta
 
 
 // RUTA DEL STUDENT

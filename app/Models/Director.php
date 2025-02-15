@@ -17,4 +17,12 @@ class Director extends Model
         'email',
         'telefono',
     ];
+
+    public function levels()
+    {
+        return $this->hasMany(Level::class);
+    }
+
+    
+
 }

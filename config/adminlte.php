@@ -319,6 +319,13 @@ return [
             ],
         ],
 
+        [
+            'text' => 'Niveles',
+            'route' => 'admin.levels.index',
+            'icon' => 'fas fa-fw fa-user',
+            'active' => ['admin/levels*'],
+        ],
+
         ['header' => 'account_settings'],
         [
             'text' => 'Inscripcion',

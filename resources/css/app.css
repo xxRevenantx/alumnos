@@ -10,3 +10,8 @@
 .sidebar-color{
     background-color: #1C232F !important;
 }
+
+
+[class*="sidebar-dark-"] {
+    background-color: #1C232F !important;
+}  

@@ -13,8 +13,16 @@ return new class extends Migration
     {
         Schema::create('levels', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('level');
             $table->string('slug');
+            $table->string('imagen')->nullable();
+            $table->string('color')->nullable();
+            $table->string('cct')->nullable();
+            $table->unsignedBigInteger('director_id')->nullable();
+            $table->unsignedBigInteger('supervisor_id')->nullable();
+            
+            $table->foreign('director_id')->references('id')->on('directors')->onDelete('set null');
+            $table->foreign('supervisor_id')->references('id')->on('supervisors')->onDelete('set null');
             $table->timestamps();
         });
     }

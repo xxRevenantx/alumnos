@@ -11,9 +11,24 @@ class Level extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name',
+        'level',
         'slug',
+        'imagen',
+        'color',
+        'cct',
+        'director_id',
+        'supervisor_id',
     ];
+
+    public function director()
+    {
+        return $this->belongsTo(Director::class);
+    }
+
+    public function supervisor()
+    {
+        return $this->belongsTo(Supervisor::class);
+    }
 
     public function students()
     {

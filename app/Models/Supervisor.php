@@ -25,5 +25,10 @@ class Supervisor extends Model
     ];
 
 
+    public function levels()
+    {
+        return $this->hasMany(Level::class);
+    }
+    
 
 }
