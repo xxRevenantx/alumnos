@@ -1,4 +1,6 @@
 <form wire:submit.prevent="updateProfileInformation">
+  
+  
     <div class="card">
         <div class="card-header">
             <h5>{{ __('Profile Information') }}</h5>

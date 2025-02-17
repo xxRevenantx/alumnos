@@ -5,45 +5,28 @@
 
     <form wire:submit.prevent="actualizarNivel" enctype="multipart/form-data">
 
-
-        <div>
-
-
-            <div class="custom-file">
-                <input type="file" wire:model="imagen_nueva" accept="image/*" class="custom-file-input" id="customFileLang" lang="es">
-            </div>
-            <img src="{{ asset('storage/levels/'.$imagen) }}" alt="Vista previa" style="max-width: 300px;">
-
-
-
-            <div class="my-5 w-80">
-                @if($imagen_nueva)
-                    <p class="text-sm">Imagen Nueva:</p>
-                    <img src="{{ $imagen_nueva->temporaryUrl() }}" alt="Vista previa" style="max-width: 300px;">
-                @endif
+        <div class="d-flex justify-content-center  align-items-center">
+            <div class="upload-area mr-4" id="uploadArea" wire:ignore>
+                <h5 class="mb-3">Arrastra y suelta tu logo aquí</h5>
+                <p class="text-muted">o</p>
+    
+                <label for="fileInput" class="btn btn-primary me-2 mb-4" tabindex="0">
+                    <span class="d-none d-sm-block">Nuevo logo</span>
+                    <i class="bx bx-upload d-block d-sm-none"></i>
+                    <input type="file" wire:model="imagen_nueva" id="fileInput"
+                     accept="image/png, image/jpeg" hidden="hidden"></label> <br>
+    
+                {{-- <button class="btn btn-primary" onclick="document.getElementById('fileInput').click()">Seleccionar archivo</button> --}}
+                <img id="preview" class="mt-3 d-none ">
             </div>
 
-             @error('imagen')
-             @error('imagen') <span class="text-danger">{{ $message }}</span> @enderror
-
-            @enderror
+            <div class="logo-anterior">
+                <h5 class="text-center">Vista previa del logo</h5>
+                <img src="{{ asset('storage/levels/'.$imagen) }}" alt="Vista previa" style="max-width: 300px;">
+            </div>
         </div>
 
-
-
-        <div class="d-flex align-items-start mr-4 align-items-sm-center gap-5">
-
-            <div class="button-wrapper">
-              <label for="upload" class="btn btn-primary me-2 mb-4" tabindex="0">
-                <span class="d-none d-sm-block">Subir Imagen</span>
-                <i class="bx bx-upload d-block d-sm-none"></i>
-                <input type="file"  wire:model="imagen" class="account-file-input nuevaImagenNivel" id="upload" name="nuevaImagenNivel"
-                accept="image/png, image/jpeg" hidden="hidden"></label>
-              <p class="fs-6 mb-0">Formatos permitidos JPG o PNG (800 x 800). Tamaño máximo 1mb</p>
-            </div>
-      </div>
-
-                    @error('imagen') <span class="text-danger">{{ $message }}</span> @enderror
+        @error('imagen') <span class="text-danger">{{ $message }}</span> @enderror
 
    <hr>
 
@@ -56,7 +39,7 @@
                 </div>
                 <div class="form-group">
                     <label for="slug">Slug</label>
-                    <input type="text"  wire:model="slug" class="form-control" id="slug" placeholder="Ingrese el slug">
+                    <input type="text" readonly wire:model="slug" class="form-control" id="slug" placeholder="Ingrese el slug">
                     @error('slug') <span class="text-danger">{{ $message }}</span> @enderror
                 </div>
                 <div class="form-group">

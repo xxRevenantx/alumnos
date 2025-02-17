@@ -7,6 +7,8 @@
 
 @section('css')
 @include('admin.partials.tablecss')
+
+
 @endsection
 
 @section('content_body')
@@ -14,3 +16,4 @@
     @livewire('admin.level.mostrar-niveles')
 
 @stop
+

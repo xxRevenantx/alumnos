@@ -1,7 +1,9 @@
 <?php
 
 use App\Http\Controllers\DirectorController;
+use App\Http\Controllers\GroupController;
 use App\Http\Controllers\LevelController;
+use App\Http\Controllers\SchoolController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\SupervisorController;
 use App\Http\Controllers\TutorController;
@@ -15,6 +17,12 @@ Route::resource('directores', DirectorController::class)->names('directores'); /
 
 // RUTAS DEL NIVEL
 Route::resource('niveles', LevelController::class)->names('levels'); // prefijo admin => admin.niveles.ruta
+
+// RUTAS DEL NIVEL
+Route::resource('grupos', GroupController::class)->names('groups'); // prefijo admin => admin.niveles.ruta
+
+// ESCUELA
+Route::resource('mi-escuela', SchoolController::class)->names('school');
 
 
 // RUTA DEL STUDENT

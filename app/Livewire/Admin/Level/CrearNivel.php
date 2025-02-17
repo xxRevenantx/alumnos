@@ -7,6 +7,7 @@ use App\Models\Level;
 use App\Models\Supervisor;
 use Livewire\Component;
 use Livewire\WithFileUploads;
+use Illuminate\Support\Str;
 
 class CrearNivel extends Component
 {
@@ -24,26 +25,47 @@ class CrearNivel extends Component
 
     protected $rules = [
         'level' => 'required',
-        // 'slug' => 'required|unique:levels',
-        'imagen' =>  'image|max:5120|mimes:jpeg,jpg,png',
+        'slug' => 'required|unique:levels',
+        'imagen' =>  'image|nullable|max:5120|mimes:jpeg,jpg,png',
     ];
+
+    protected $messages = [
+        'level.required' => 'El campo nivel es obligatorio',
+        'slug.required' => 'El campo slug es obligatorio',
+        'slug.unique' => 'El slug ya existe',
+        'imagen.image' => 'El archivo debe ser una imagen',
+        'imagen.max' => 'El archivo no debe pesar más de 5MB',
+        'imagen.mimes' => 'El archivo debe ser formato jpeg, jpg o png',
+    ];
+
+
+    public function updatedLevel($value)
+    {
+        // Genera el slug automáticamente cuando el título cambia
+        $this->slug = Str::slug(trim($value));
+    }
 
     public function guardarNivel()
     {
-
         $datos = $this->validate();
 
-        // $imagen = Storage::putFile('public/vacantes', new File($this->imagen[0]['path']));
-        $imagen = $this->imagen->store('levels');
-        $datos["imagen"] = str_replace('levels/', '', $imagen);
+       
+
+        if ($this->imagen) {
+            $imagen = $this->imagen->store('levels');
+            $datos["imagen"] = str_replace('levels/', '', $imagen);
+        } else {
+            $datos["imagen"] = null;
+        }
+
 
 
         Level::create([
-            'level' => $this->level,
+            'level' => trim($this->level),
             'slug' => $this->slug,
             'imagen' => $datos["imagen"],
             'color' => $this->color,
-            'cct' => $this->cct,
+            'cct' => strtoupper(trim($this->cct)),
             'director_id' => $this->director_id,
             'supervisor_id' => $this->supervisor_id,
 
@@ -57,11 +79,7 @@ class CrearNivel extends Component
 
     }
 
-    public function mount(){
-        $this->level = $this->slug;
-    }
-
-
+    
     public function render()
     {
         $directores = Director::all();

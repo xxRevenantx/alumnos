@@ -23,7 +23,7 @@ class GroupSeeder extends Seeder
         
         foreach ($groups as $group) {
             \App\Models\Group::create([
-                'name' => $group,
+                'grupo' => $group,
             ]);
         }
     }

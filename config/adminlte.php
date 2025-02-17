@@ -299,11 +299,24 @@ return [
     */
 
     'menu' => [
+        [
+            'text' => 'Tablero',
+            'route' => 'admin.school.index',
+            'icon' => 'fas fa-home',
+            'active' => ['admin/school'],
+        ],
+        [
+            'text' => 'Mi escuela',
+            'route' => 'admin.school.index',
+            'icon' => 'fas fa-school',
+            'active' => ['admin/school'],
+        ],
+
         ['header' => 'AUTORIDADES'],
 
         [
             'text' => 'Autoridades',
-            'icon' => 'fas fa-fw fa-share',
+            'icon' => 'fas fa-user-plus',
             'submenu' => [
                 [
                     'text' => 'Supervisores',
@@ -326,7 +339,13 @@ return [
             'active' => ['admin/levels*'],
         ],
 
-        ['header' => 'account_settings'],
+        ['header' => 'ESTRUCTURA ACADÉMICA'],
+        [
+            'text' => 'Grupos',
+            'route' => 'admin.groups.index',
+            'icon' => 'fas fa-fw fa-user',
+            'active' => ['admin/groups*'],
+        ],
         [
             'text' => 'Inscripcion',
             'route' => 'admin.students.index',

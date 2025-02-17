@@ -12,10 +12,7 @@ class Group extends Model
 
 
     protected $fillable = [
-        'name',
-        'status',
-        'grade_id',
-        'generation_id',
+        'grupo',
     ];
 
     public function students()

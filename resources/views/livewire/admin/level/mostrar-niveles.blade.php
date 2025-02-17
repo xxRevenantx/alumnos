@@ -28,7 +28,11 @@
                     <tr :key = "{{ $nivel->id }}">
                         <td>{{ $key+1}}</td>
                         <td>{{ $nivel->level }}</td>
-                        <td><img src="{{ asset('storage/levels/'.$nivel->imagen) }}" alt="{{ $nivel->level }}" width="50"></td>
+                        <td>
+                            @if($nivel->imagen)
+                                <img src="{{ asset('storage/levels/'.$nivel->imagen) }}" alt="{{ $nivel->level }}" width="50">
+                            @endif
+                        </td>
                         <td><span class="badge badge-primary" style="background-color: {{ $nivel->color }}">{{ $nivel->color }}</span></td>
                         <td>{{ $nivel->cct }}</td>
                         <td>
@@ -36,8 +40,6 @@
                                 <a href="{{route('admin.directores.edit', $nivel->director->id)}}">
                                     {{ $nivel->director->nombre }} {{ $nivel->director->apellido_paterno }} {{ $nivel->director->apellido_materno }}
                                 </a>
-                            @else
-                                Sin Director
                             @endif
                         </td>
                         <td>
@@ -45,8 +47,6 @@
                                 <a href="{{route('admin.supervisores.edit', $nivel->supervisor->id)}}">
                                     {{ $nivel->supervisor->nombre }} {{ $nivel->supervisor->apellido_paterno }} {{ $nivel->supervisor->apellido_materno }}
                                 </a>
-                            @else
-                                Sin Supervisor
                             @endif
                         </td>
 
@@ -70,7 +70,6 @@
 
 
 @section('js')
-
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
